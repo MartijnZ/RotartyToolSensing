@@ -1,16 +1,21 @@
 #!/usr/bin/env python3
 """
 Launcher for the RPi Sensor Node FastAPI service.
-
-Usage:
-    python run_server.py [--host 0.0.0.0] [--port 8000]
 """
+
+import sys
+from pathlib import Path
+
+# --- ensure src/ is importable ---
+ROOT = Path(__file__).resolve().parents[1]       # project root
+SRC = ROOT / "src"
+sys.path.insert(0, str(SRC))                     # <— add to import path
+# ---------------------------------
 
 import argparse
 import uvicorn
 from sensor_node.main import create_app
 from sensor_node.config import Settings
-
 
 def main():
     parser = argparse.ArgumentParser(description="Run the RPi Sensor Node API server")
