@@ -1,0 +1,13 @@
+[Unit]
+Description=RPi Sensor Node
+After=network-online.target
+
+[Service]
+User=pi
+WorkingDirectory=/opt/rpi-sensor-node
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/usr/bin/python3 -m sensor_node.main
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
