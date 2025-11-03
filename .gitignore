@@ -1,4 +1,9 @@
-node_modules
+# Node & build artifacts
+frontend/build/
+frontend/.svelte-kit/
+frontend/.vite/
+
+frontend/node_modules
 
 # Output
 .output
