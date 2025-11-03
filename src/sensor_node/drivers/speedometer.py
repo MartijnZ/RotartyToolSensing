@@ -1,6 +1,6 @@
 import asyncio, time
 try:
-    import pigpio
+    import gpiozero
 except ImportError:
     pigpio = None
 
@@ -18,14 +18,10 @@ class Speedometer:
         if pigpio is None:
             raise RuntimeError("pigpio required for robust timing")
 
-        self._pi = pigpio.pi()
+        self._btn = gpiozero.Button(self.gpio_a, pull_up=True, bounce_time=0.01)
+        self._btn.when_pressed = self._cb
 
-        self._pi.set_mode(self.gpio_a, pigpio.INPUT)
-        self._pi.set_pull_up_down(23, pigpio)
-        self._pi.set_glitch_filter(GPIO_A, 3000) # microseconds
-        self._pi.callback(self.gpio_a, pigpio.RISING_EDGE, self._cb)
-
-    def _cb(self, gpio, level, tick):
+    def _cb(self):
         # tick is in microseconds (wraps); use monotonic_ns for simplicity
 
         now = time.monotonic_ns()
