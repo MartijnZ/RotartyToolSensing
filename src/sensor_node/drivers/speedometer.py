@@ -15,7 +15,7 @@ class Speedometer:
         self._last_ns = None
 
     async def start(self):
-        if pigpio is None:
+        if gpiozero is None:
             raise RuntimeError("pigpio required for robust timing")
 
         self._btn = gpiozero.Button(self.gpio_a, pull_up=True, bounce_time=0.01)
