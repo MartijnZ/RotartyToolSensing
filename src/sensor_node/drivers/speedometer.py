@@ -6,7 +6,7 @@ except ImportError:
 
 class Speedometer:
 
-    def __init__(self, gpio_a:int, gpio_b:int|None=None, pulses_per_rev:int=20, wheel_circ_m:float=1.0,
+    def __init__(self, gpio_a:int, gpio_b:int|None=None, pulses_per_rev:int=1, wheel_circ_m:float=1.0,
                  idle_timeout_s:float=2.0,
                  debounce_s: float=0.01):
         self.gpio_a = gpio_a
