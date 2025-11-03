@@ -21,7 +21,8 @@ class Speedometer:
         self._pi = pigpio.pi()
 
         self._pi.set_mode(self.gpio_a, pigpio.INPUT)
-        self._pi.set_pull_up_down(23, pigpio.PUD_UP)
+        self._pi.set_pull_up_down(23, pigpio)
+        self._pi.set_glitch_filter(GPIO_A, 3000) # microseconds
         self._pi.callback(self.gpio_a, pigpio.RISING_EDGE, self._cb)
 
     def _cb(self, gpio, level, tick):
