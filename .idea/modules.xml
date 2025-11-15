@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/RotaryToolSensing.iml" filepath="$PROJECT_DIR$/.idea/RotaryToolSensing.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/RDCMonitor.iml" filepath="$PROJECT_DIR$/.idea/RDCMonitor.iml" />
     </modules>
   </component>
 </project>

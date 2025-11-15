@@ -10,8 +10,7 @@
 
 <h1>Speed Viewer</h1>
 <div id="status">connecting…</div>
-<div id="speed">— m/s</div>
-<div id="sub">— km/h</div>
+<div id="speed">— rpm</div>
 
 <script>
   // Hardcode your endpoint here.
@@ -20,7 +19,6 @@
 
   const statusEl = document.getElementById('status');
   const speedEl  = document.getElementById('speed');
-  const subEl    = document.getElementById('sub');
 
   function setStatus(text, color='#444') {
     statusEl.textContent = text;
@@ -40,8 +38,7 @@
         const payload = msg.payload && msg.topic === 'speed' ? msg.payload : msg;
         const v = Number(payload.speed_mps);
         if (!Number.isFinite(v)) return;
-        speedEl.textContent = v.toFixed(2) + " m/s";
-        subEl.textContent = (v * 3.6).toFixed(2) + " km/h";
+        speedEl.textContent = v.toFixed(2) + " rpm";
       } catch (e) {
         console.warn('bad message', e);
       }
