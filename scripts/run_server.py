@@ -13,11 +13,14 @@ sys.path.insert(0, str(SRC))                     # <— add to import path
 # ---------------------------------
 
 import argparse
-import uvicorn
-from sensor_node.main import create_app
+import uvicorn, logging
+from sensor_node.main import create_app, setup_logging
 from sensor_node.config import Settings
 
+logger = logging.getLogger(__name__)
+
 def main():
+    setup_logging()
     parser = argparse.ArgumentParser(description="Run the RPi Sensor Node API server")
     parser.add_argument("--host", default=None, help="Host to bind (default from .env or 0.0.0.0)")
     parser.add_argument("--port", type=int, default=None, help="Port to bind (default from .env or 8000)")
@@ -29,7 +32,7 @@ def main():
     host = args.host or settings.api_host or "0.0.0.0"
     port = args.port or settings.api_port or 8000
 
-    print(f"Starting FastAPI server on {host}:{port} ...")
+    logging.info(f"Starting FastAPI server on {host}:{port} ...")
 
     # Launch the FastAPI app defined in sensor_node/main.py
     uvicorn.run(
